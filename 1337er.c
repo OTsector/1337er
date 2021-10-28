@@ -23,8 +23,8 @@ long long getFileSize(char *file) {
 			content = (char*)malloc(length + 1);
 			if (content) {
 				length = fread(content, 1, length, ptr);
+				return length;
 			}
-			return length;
 		}
 	return 0;
 }
