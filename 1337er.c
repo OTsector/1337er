@@ -3,7 +3,7 @@
  07    [|] 0ffensive 7ester
 
  License: GLP v2.0
- written by: -07 @github.com/OTsector
+ by: -07 @github.com/OTsector
 
 */
 #include <stdio.h>
@@ -69,8 +69,8 @@ int main(int argc, char **argv) {
 		printf("ERROR: can't read the file: \"%s\"", argv[1]);
 		return 1;
 	} else if(!ptr2) {
-			printf("ERROR: can't read the file: \"%s\"", argv[2]);
-			return 1;
+		printf("ERROR: can't read the file: \"%s\"", argv[2]);
+		return 1;
 	} else if(length != length2) {
 		puts("ERROR: this two file is not equal sizes");
 		return 1;
