@@ -16,16 +16,16 @@ long long getFileSize(char *file) {
 	char *content;
 	FILE *ptr;
 	ptr = fopen(file,"rb");
-		if (ptr) {
-			fseek(ptr, 0, SEEK_END);
-			length = ftell(ptr);
-			fseek(ptr, 0, SEEK_SET);
-			content = (char*)malloc(length + 1);
-			if (content) {
-				length = fread(content, 1, length, ptr);
-				return length;
-			}
+	if (ptr) {
+		fseek(ptr, 0, SEEK_END);
+		length = ftell(ptr);
+		fseek(ptr, 0, SEEK_SET);
+		content = (char*)malloc(length + 1);
+		if (content) {
+			length = fread(content, 1, length, ptr);
+			return length;
 		}
+	}
 	return 0;
 }
 char *afterChar(char *input, char c) {
