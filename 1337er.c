@@ -26,6 +26,7 @@ long long getFileSize(char *file) {
 			return length;
 		}
 	}
+	fclose(ptr);
 	return 0;
 }
 char *afterChar(char *input, char c) {
@@ -87,5 +88,7 @@ int main(int argc, char **argv) {
 		fseek(ptr, i, SEEK_END);
 		fseek(ptr2, i, SEEK_END);
 	}
+	fclose(ptr);
+	fclose(ptr2);
 	return 0;
 }
