@@ -23,9 +23,11 @@ long long getFileSize(char *file) {
 long long hex2dec(char *input) {
 	return (long long)strtoul(input, NULL, 16);
 }
+
 unsigned char hex2char(char *input) {
 	return (unsigned char)strtoul(input, NULL, 16);
 }
+
 char *beforeChar(char *input, char breaker) {
 	char *out=(char*)malloc(sizeof(char)*strlen(input));
 	for(int i=0; input[i] != '\0'; i++) {
@@ -35,6 +37,7 @@ char *beforeChar(char *input, char breaker) {
 	}
 	return out;
 }
+
 char *afterChar(char *input, char c) {
 	char *tmp = (char*)malloc(sizeof(char)*strlen(input));
 	char *out = (char*)malloc(sizeof(char)*strlen(input));
