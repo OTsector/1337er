@@ -7,45 +7,9 @@
 
 */
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-
-long long getFileSize(char *file) {
-	long long length;
-	char *content;
-	FILE *ptr;
-	ptr = fopen(file,"rb");
-	if (ptr) {
-		fseek(ptr, 0, SEEK_END);
-		length = ftell(ptr);
-		fseek(ptr, 0, SEEK_SET);
-		content = (char*)malloc(length + 1);
-		if (content) {
-			length = fread(content, 1, length, ptr);
-			return length;
-		}
-	}
-	fclose(ptr);
-	return 0;
-}
-char *afterChar(char *input, char c) {
-	char *tmp = (char*)malloc(sizeof(char)*strlen(input));
-	char *out = (char*)malloc(sizeof(char)*strlen(input));
-	int x = 0;
-	for(int i=strlen(input); i>=0; i--) {
-		if(input[i] == c) break;
-		if(i==strlen(input)) continue;
-		tmp[x] = input[i];
-		x++;
-	}
-	x=strlen(tmp)-1;
-	for (int i=0; i<strlen(tmp); ++i) {
-		out[x] = tmp[i];
-		--x;
-	}
-	return out;
-}
+#include <stdlib.h>
+#include "leeter.h"
 
 int main(int argc, char **argv) {
 
