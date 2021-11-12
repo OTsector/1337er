@@ -1,6 +1,5 @@
 #ifndef LEETER_H
 #define LEETER_H
-#endif
 
 long long getFileSize(char *file) {
 	long long length;
@@ -55,3 +54,5 @@ char *afterChar(char *input, char c) {
 	}
 	return out;
 }
+
+#endif
