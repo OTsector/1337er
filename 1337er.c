@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
 		fread(buffer, 1, 1, ptr);
 		fread(buffer2, 1, 1, ptr2);
 		if(buffer[0] != buffer2[0])
-			printf("%016llX:%02X>%02X\n", i, buffer[0], buffer2[0]);
+			printf("%016llX:%02X->%02X\n", i, buffer2[0], buffer[0]);
 		fseek(ptr, i, SEEK_END);
 		fseek(ptr2, i, SEEK_END);
 	}

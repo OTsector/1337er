@@ -42,9 +42,8 @@ int main(int argc, char **argv) {
 		printf("ERROR: can't read the file: \"%s\"\n", argv[2]);
 		return 1;
 	}
-
 	ch = fgetc(fptr);
-	while (ch != EOF) {
+	while (ch != EOF && ch != 0xFF) {
 		ch = fgetc(fptr);
 		if(l > 0 && ch != '\n') {
 			if(l>1) {
@@ -62,8 +61,8 @@ int main(int argc, char **argv) {
 					}
 				}
 				line=hex2dec(beforeChar(string, ':'));
-				oldChar=hex2char(afterChar(string, '>'));
-				newChar=hex2char(beforeChar(afterChar(string, ':'), '>'));
+				oldChar=hex2char(beforeChar(afterChar(string, ':'), '-'));
+				newChar=hex2char(afterChar(string, '>'));
 				fseek(ptr, line, SEEK_SET);
 				fread(buffer, 1, 1, ptr);
 				fseek(ptr, line, SEEK_END);
@@ -76,14 +75,13 @@ int main(int argc, char **argv) {
 					printf("ERROR: offset \"%s\" is bigger then file size\n", 
 						beforeChar(string, ':'));
 					return 1;
-				} else if(buffer[0] != newChar) {
-					printf("%02x %02x %016X\n", buffer[0], buffer[1], line);
+				} else if(buffer[0] != oldChar) {
 					printf("ERROR: original binary \"%02X\" hex is not equal for current \"%02X\" hex value\n", 
-						buffer[0], newChar);
+						buffer[0], oldChar);
 					return 1;
 				}
-				printf("INFO: %s - done!\n", string);
-				fwrite(&oldChar, 1, 1, ptr);
+				if(fwrite(&newChar, 1, 1, ptr))
+					printf("INFO: %s - done!\n", string);
 				fseek(ptr, line, SEEK_END);
 				x=0;
 				i=0;
@@ -92,5 +90,5 @@ int main(int argc, char **argv) {
 	}
 	fclose(fptr);
 	fclose(ptr);
-	 return 0;
+	return 0;
 }
